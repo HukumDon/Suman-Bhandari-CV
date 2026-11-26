@@ -33,7 +33,7 @@
     "typescript": "^5.8.0"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": "22.x"
   },
   "allowScripts": {
     "@prisma/client@6.19.3": true,

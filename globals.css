@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/* Design tokens. Light is "fog and ink", dark is "graphite and rose".  */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --canvas: #f1f3f8;
+  --surface: #ffffff;
+  --surface-2: #e7ebf4;
+  --line: #d6dce9;
+  --fg: #0d1020;
+  --muted: #545b70;
+  --accent: #d6205f;
+  --accent-fg: #ffffff;
+  --ice: #2f6bff;
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: #0b0c10;
+  --surface: #12141a;
+  --surface-2: #1a1d26;
+  --line: #262a36;
+  --fg: #eceef4;
+  --muted: #9aa1b2;
+  --accent: #ff4f8b;
+  --accent-fg: #14050b;
+  --ice: #9cd0ff;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-ice: var(--ice);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--line);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--fg);
+  font-family: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero                                                                */
+/* ------------------------------------------------------------------ */
+
+/* Name scales with the longest word so it never overflows, on any screen. */
+.hero-name {
+  font-size: min(calc(148vw / var(--n, 8)), calc(1040px / var(--n, 8)), 8.25rem);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 75% 65% at 30% 35%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 30% 35%, #000 20%, transparent 75%);
+  opacity: 0.7;
+}
+
+.hero-glow {
+  background: radial-gradient(
+    520px circle at var(--mx, 70%) var(--my, 30%),
+    color-mix(in oklab, var(--accent) 16%, transparent),
+    transparent 65%
+  );
+}
+
+/* One orchestrated load sequence. Pure CSS so it works before hydration. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0.001;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-fade {
+  animation: page-fade 0.45s ease-out both;
+}
+
+/* ------------------------------------------------------------------ */
+/* Cards                                                               */
+/* ------------------------------------------------------------------ */
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    380px circle at var(--sx, 50%) var(--sy, 50%),
+    color-mix(in oklab, var(--accent) 14%, transparent),
+    transparent 70%
+  );
+}
+
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .spotlight::after {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion                                                      */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rise,
+  .page-fade {
+    animation: none;
+  }
+}

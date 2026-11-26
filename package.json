@@ -1,43 +1,43 @@
 {
-  "name": "cv-portfolio",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Premium full-stack CV and portfolio website built with Next.js, TypeScript, Tailwind CSS and Prisma.",
-  "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start",
-    "typecheck": "tsc --noEmit",
-    "postinstall": "prisma generate",
-    "db:migrate": "prisma migrate deploy",
-    "db:push": "prisma db push",
-    "db:studio": "prisma studio"
-  },
-  "dependencies": {
-    "@prisma/client": "^6.16.0",
-    "motion": "^12.23.0",
-    "next": "^15.5.0",
-    "next-themes": "^0.4.6",
-    "pdf-lib": "^1.17.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "zod": "^3.25.76"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.0",
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.0",
-    "prisma": "^6.16.0",
-    "tailwindcss": "^4.1.0",
-    "typescript": "^5.8.0"
-  },
-  "engines": {
-    "node": "22.x"
-  },
-  "allowScripts": {
-    "@prisma/client@6.19.3": true,
-    "prisma@6.19.3": true,
-    "@prisma/engines@6.19.3": true
-  }
+    "name": "cv-portfolio",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Premium full-stack CV and portfolio website built with Next.js, TypeScript, Tailwind CSS and Prisma.",
+    "scripts": {
+        "dev": "next dev",
+        "build": "prisma generate && next build",
+        "start": "next start",
+        "typecheck": "tsc --noEmit",
+        "postinstall": "prisma generate",
+        "db:migrate": "prisma migrate deploy",
+        "db:push": "prisma db push",
+        "db:studio": "prisma studio"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.16.0",
+        "motion": "^12.23.0",
+        "next": "^15.5.0",
+        "next-themes": "^0.4.6",
+        "pdf-lib": "^1.17.1",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0",
+        "zod": "^3.25.76"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4.1.0",
+        "@types/node": "^22.0.0",
+        "@types/react": "^19.1.0",
+        "@types/react-dom": "^19.1.0",
+        "prisma": "^6.16.0",
+        "tailwindcss": "^4.1.0",
+        "typescript": "^5.8.0"
+    },
+    "engines": {
+        "node": "22.x"
+    },
+    "allowScripts": {
+        "@prisma/client@6.19.3": true,
+        "prisma@6.19.3": true,
+        "@prisma/engines@6.19.3": true
+    }
 }
